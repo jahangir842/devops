@@ -70,3 +70,30 @@ resource mystorageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
     supportsHttpsTrafficOnly: true
   }
 }
+
+resource myvirtualNetworkGateway 'Microsoft.Network/virtualNetworkGateways@2024-07-01' = {
+  name: 'myVirtualNetworkGateway'
+  location: resourceGroup().location
+  properties: {
+    sku: {
+      name: 'VpnGw1'
+      tier: 'VpnGw1'
+    }
+    gatewayType: 'Vpn'
+    vpnType: 'RouteBased'
+    enableBgp: false
+    ipConfigurations: [
+      {
+        name: 'vnetGatewayConfig'
+        properties: {
+          subnet: {
+            id: myvirtualNetwork.properties.subnets[0].id
+          }
+          publicIPAddress: {
+            id: mystorageAccount.id
+          }
+        }
+      }
+    ]
+  }
+}
