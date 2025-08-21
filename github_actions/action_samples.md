@@ -11,7 +11,7 @@
   az ad sp create-for-rbac \
   --name "github-actions-portal" \
   --role "Contributor" \
-  --scopes "/subscriptions/b806251a-5643-4df5-9e3b-cc2781372122" \
+  --scopes "/subscriptions/<<Sudscription ID>>" \
   --sdk-auth
   ```
 
