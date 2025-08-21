@@ -3,8 +3,8 @@
 ---
 
 ### **azure/login\@v2**
-**Ref:** https://github.com/marketplace/actions/azure-login
-This action is used to authenticate with **Azure** using a Service Principal.
+- **Ref:** https://github.com/marketplace/actions/azure-login
+- This action is used to authenticate with **Azure** using a Service Principal.
 
 ```yaml
 - name: Azure Login
@@ -20,8 +20,8 @@ This action is used to authenticate with **Azure** using a Service Principal.
 ---
 
 ### **azure/arm-deploy\@v2**
-**Ref:** https://github.com/Azure/arm-deploy
-This action is used to **deploy Azure resources** using an ARM template or a Bicep file.
+- **Ref:** https://github.com/Azure/arm-deploy
+- This action is used to **deploy Azure resources** using an ARM template or a Bicep file.
 
 ```yaml
 - name: Deploy Infrastructure
