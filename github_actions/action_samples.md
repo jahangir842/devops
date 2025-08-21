@@ -3,7 +3,7 @@
 ---
 
 ### **azure/login\@v2**
-
+**Ref:** https://github.com/marketplace/actions/azure-login
 This action is used to authenticate with **Azure** using a Service Principal.
 
 ```yaml
@@ -20,7 +20,7 @@ This action is used to authenticate with **Azure** using a Service Principal.
 ---
 
 ### **azure/arm-deploy\@v2**
-
+**Ref:** https://github.com/Azure/arm-deploy
 This action is used to **deploy Azure resources** using an ARM template or a Bicep file.
 
 ```yaml
@@ -35,5 +35,3 @@ This action is used to **deploy Azure resources** using an ARM template or a Bic
 ```
 
 ---
-
-👉 Do you also want me to **add comments inline** in YAML (like explaining each key in the workflow itself), or keep it in separate documentation style like above?
