@@ -5,6 +5,15 @@
 ### **azure/login\@v2**
 - **Ref:** https://github.com/marketplace/actions/azure-login
 - This action is used to authenticate with **Azure** using a Service Principal.
+- Create Service Principle with following command:
+
+  ```bash
+  az ad sp create-for-rbac \
+  --name "github-actions-portal" \
+  --role "Contributor" \
+  --scopes "/subscriptions/b806251a-5643-4df5-9e3b-cc2781372122" \
+  --sdk-auth
+  ```
 
 ```yaml
 - name: Azure Login
