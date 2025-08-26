@@ -28,3 +28,33 @@
 - `$(Agent.BuildDirectory)` - root directory for all build-related folders
 
 The staging directory is automatically cleaned up between builds, so it provides a clean workspace for artifact preparation in each pipeline run.
+
+
+## What is drop
+
+In Azure DevOps pipelines, the default artifact name is drop because historically build outputs were called a “drop” folder—a place where the compiled code, binaries, or packaged artifacts were “dropped” after a build finished.
+
+When you run a pipeline that produces artifacts, Azure DevOps automatically creates a container named drop unless you explicitly specify another name.
+
+Example in YAML:
+
+steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration Release --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+- publish: $(Build.ArtifactStagingDirectory)
+  artifact: drop   # 👈 default artifact name
+
+If you want to customize the artifact name, just change the artifact parameter:
+
+- publish: $(Build.ArtifactStagingDirectory)
+  artifact: myapp   # 👈 custom artifact name
+
+👉 Summary:
+drop is just a legacy default name (from the concept of a "drop folder"). You can rename it to anything meaningful like webapp, api, terraform, etc.
+
+
