@@ -1,7 +1,19 @@
 
 # DevOps Learning Repository
 
-Welcome to the **DevOps Learning Repository** – a curated collection of practical examples, configurations, and notes to help you master modern DevOps tools and practices. This repository is organized into multiple directories, each focused on a specific DevOps technology.
+🚀 Level Up Your Azure Skills — 100% FREE Hands-On Labs! 💻
+
+Perfect for anyone preparing for Microsoft certifications or looking to sharpen their cloud expertise. 🌐
+
+🔹 AZ-104 – Microsoft Azure Administrator 👉 https://lnkd.in/gNhrvxYU
+🔹 AZ-500 – Azure Security Technologies 🔐 👉 https://lnkd.in/gtkisVEH
+🔹 AZ-700 – Azure Networking Solutions 🌍 👉 https://lnkd.in/g_4cg4SF
+🔹 AZ-305 – Azure Infrastructure Solutions 🏗️ 👉 https://lnkd.in/g3fGZSWr
+🔹 AZ-140 – Azure Virtual Desktop 🖥️ 👉 https://lnkd.in/guyYeBu2
+🔹 AZ-800 – Windows Server Hybrid Core ⚙️ 👉 https://lnkd.in/gbuVGcpm
+🔹 AZ-801 – Windows Server Hybrid Advanced 🔧 👉 https://lnkd.in/gdriz7z3
+🔹 SC-300 – Identity & Access Administrator 🛡️ 👉 https://lnkd.in/gPJDYF3t
+🔹 AZ-400 – DevOps Solutions ⚡ 👉 https://lnkd.in/g52DNbhd
 
 ---
 
