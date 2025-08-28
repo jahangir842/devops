@@ -9,3 +9,7 @@
 
 
 - Pool and Environment is set within **job** ...... pool environment me job .....
+
+          |---- pool
+- Job --------- environment
+          |---- steps
