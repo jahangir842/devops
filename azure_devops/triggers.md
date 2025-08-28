@@ -1,23 +1,41 @@
-# 🚀 Azure DevOps YAML Triggers Cheat Sheet
+# 🚀 Azure DevOps YAML Triggers – Cheat Sheet
 
 ---
 
-## 🔹 1. **CI Trigger** – Run pipeline on branch push
+## 🔹 1. **Continuous Integration (CI) Trigger** – Run on branch push
 
-Runs automatically when code is pushed to selected branches.
+Automatically runs when commits are pushed to specific branches.
 
 ```yaml
 trigger:
-- main          # Only main branch
+- main    # Only main branch
 ```
 
-👉 **Use when:** You want automatic builds/deploys on commits.
+👉 Use for automatic builds/deployments after each commit.
 
 ---
 
-## 🔹 2. **Path Filters** – Run only on file/folder changes
+## 🔹 2. **Branch Filters** – Control which branches trigger
 
-Limits CI trigger to specific paths.
+Specify `include` and `exclude` patterns.
+
+```yaml
+trigger:
+  branches:
+    include:
+      - main
+      - release/*
+    exclude:
+      - experimental/*
+```
+
+✅ Common for `main`, `develop`, or `release/*` branches.
+
+---
+
+## 🔹 3. **Path Filters** – Run only on file/folder changes
+
+Limit CI runs to specific paths.
 
 ```yaml
 trigger:
@@ -28,58 +46,74 @@ trigger:
     exclude: [docs/]
 ```
 
-👉 **Use when:** You want to avoid builds for docs/ or non-code changes.
+✅ Helps monorepos avoid triggering builds for docs or unrelated changes.
 
 ---
 
-## 🔹 3. **PR Trigger** – Run on Pull Request creation/update
+## 🔹 4. **Tag Filters** – Trigger on Git tags
 
-Validates PRs targeting certain branches.
+Run pipelines on tag creation.
+
+```yaml
+trigger:
+  tags:
+    include: [v*]
+    exclude: [test-*]
+```
+
+✅ Useful for release pipelines (e.g., versioned tags `v1.0.0`).
+
+---
+
+## 🔹 5. **Batching Builds** – Reduce duplicate runs
+
+Combine multiple commits into one run.
+
+```yaml
+trigger:
+  batch: true
+```
+
+✅ Helpful when many commits are pushed quickly.
+
+---
+
+## 🔹 6. **Pull Request (PR) Trigger** – Validate PRs
+
+Runs when a PR is opened or updated.
 
 ```yaml
 pr:
-- main
+  branches:
+    include: [main]
+  paths:
+    include: [bicep/**]
 ```
 
-👉 **Use when:** You want tests/validation before merging.
+✅ Ensures validation/testing before merging.
 
 ---
 
-## 🔹 4. **Scheduled Trigger** – Run on a timer (cron)
+## 🔹 7. **Scheduled Trigger** – Run on a timer (cron)
 
-Runs pipeline at fixed times (UTC).
+Runs pipelines at defined times (UTC).
 
 ```yaml
 schedules:
-- cron: "0 2 * * 1-5"   # 2 AM Mon–Fri
+- cron: "0 2 * * *"     # Daily 2 AM UTC
+  displayName: Nightly Build
   branches:
     include: [main]
-  always: true
+  always: true           # Run even if no changes
 ```
 
-👉 **Use when:** You need nightly builds or regular tests.
+✅ Great for nightly builds, cleanup jobs, or infra drift checks.
 
 ---
 
-## 🔹 5. **Manual Trigger** – Start from UI/API with parameters
+## 🔹 8. **Pipeline Completion Trigger** – Chain pipelines
 
-Pipeline runs only when triggered manually.
-
-```yaml
-parameters:
-- name: environment
-  type: string
-  default: dev
-  values: [dev, prod]
-```
-
-👉 **Use when:** You want full control before starting (e.g., Prod).
-
----
-
-## 🔹 6. **Pipeline Resource Trigger** – Run when another pipeline finishes
-
-Chained pipelines (Build → Deploy).
+Trigger one pipeline when another finishes.
 
 ```yaml
 resources:
@@ -91,13 +125,13 @@ resources:
         include: [main]
 ```
 
-👉 **Use when:** You want to auto-deploy after a successful build pipeline.
+✅ Use for build → test → deploy workflows.
 
 ---
 
-## 🔹 7. **Repository Resource Trigger** – Run when another repo changes
+## 🔹 9. **Repository Resource Trigger** – Multi-repo setup
 
-Monitors external/multi-repo setup.
+Trigger pipelines when another repo changes.
 
 ```yaml
 resources:
@@ -110,44 +144,52 @@ resources:
         include: [main]
 ```
 
-👉 **Use when:** You depend on shared repos/tools.
+✅ Useful if your project depends on shared code/tools.
 
 ---
 
-## 🔹 8. **Tag Trigger (Workaround)** – Run on Git tag push
+## 🔹 10. **Manual Trigger (No CI)** – Run only on demand
 
-Azure DevOps doesn’t support native tags, but you can target refs.
-
-```yaml
-trigger:
-  branches:
-    include:
-    - refs/tags/*
-```
-
-👉 **Use when:** You release based on version tags.
-
----
-
-## 🔹 9. **Disable Triggers** – No auto runs
-
-Stops CI or PR triggers.
+Disable auto triggers so runs must be started manually (UI/API).
 
 ```yaml
 trigger: none
 pr: none
 ```
 
-👉 **Use when:** The pipeline should run only manually or via another pipeline.
+✅ Perfect for release pipelines or controlled deployments.
 
 ---
 
-## 🔹 10. **Best Practices**
+## 🔹 11. **Manual Parameters** – Customize manual runs
 
-✔ Use **path filters** to save build minutes.
-✔ Use **PR triggers** for code quality before merging.
-✔ Use **schedules** for nightly tests.
-✔ Use **pipeline chaining** for Build → Deploy flows.
-✔ Use **manual triggers with parameters** for Prod.
+Add runtime parameters when manually starting pipelines.
+
+```yaml
+parameters:
+- name: environment
+  type: string
+  default: dev
+  values: [dev, prod]
+```
+
+✅ Useful for selecting environments (e.g., Dev vs. Prod).
+
+---
+
+## ✅ Quick Reference Table
+
+| Trigger Type            | Description / Use Case                                 |
+| ----------------------- | ------------------------------------------------------ |
+| **branches**            | Restrict CI to certain branches (`main`, `release/*`). |
+| **paths**               | Run only if certain files/folders change.              |
+| **tags**                | Run on Git tags (e.g., releases, hotfixes).            |
+| **batch**               | Cancel intermediate runs; only latest commit runs.     |
+| **pr**                  | Validate PRs before merge.                             |
+| **schedules**           | Time-based (cron) triggers (nightly, weekly, etc.).    |
+| **pipeline completion** | Chain pipelines together.                              |
+| **repository resource** | Trigger on changes in another repo.                    |
+| **manual (none)**       | Run only when started manually.                        |
+| **manual w/parameters** | Add flexibility for environments or options.           |
 
 ---
