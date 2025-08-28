@@ -12,6 +12,6 @@
 
 ```bash
            |---- pool
-- Job --------- environment
-          |---- steps
+- Job ---------- environment
+           |---- steps
 ```
