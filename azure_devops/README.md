@@ -10,6 +10,8 @@
 
 - Pool and Environment is set within **job** ...... pool environment me job .....
 
-          |---- pool
+```bash
+           |---- pool
 - Job --------- environment
           |---- steps
+```
