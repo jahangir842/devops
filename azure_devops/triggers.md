@@ -37,6 +37,12 @@ pr:
 
 ---
 
+**In this case:**
+
+- If someone opens a PR targeting main → pipeline runs.
+- If someone opens a PR targeting develop → pipeline runs.
+- PRs targeting other branches won’t trigger the pipeline.
+
 ### 📊 Quick Comparison
 
 | Setting   | When it Runs                | Use Case                       |
