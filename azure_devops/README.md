@@ -6,3 +6,6 @@
 
 ## Az-400 Free Labs
 - https://microsoftlearning.github.io/AZ400-DesigningandImplementingMicrosoftDevOpsSolutions/
+
+
+- Pool and Environment is set within **job** ...... pool environment me job .....
