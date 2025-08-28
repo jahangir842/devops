@@ -1,3 +1,53 @@
+# 🔹 Azure Pipelines: `trigger` vs `pr`
+
+### 1. `trigger:`
+
+* Runs pipeline on **branch commits/pushes**.
+* Example: push to `main` → pipeline runs.
+
+### 2. `pr:`
+
+* Runs pipeline on **pull request events** (create/update PR).
+* Example: open/update PR into `main` → pipeline runs.
+
+### 3. `batch: true`
+
+* Avoids redundant runs.
+* If multiple commits are pushed while a run is active, only the **latest commit** runs after the current build finishes.
+
+---
+
+### ✅ Example YAML
+
+```yaml
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+  batch: true   # optimize branch pushes
+
+pr:
+  branches:
+    include:
+      - main
+      - develop
+  batch: true   # optimize pull requests
+```
+
+---
+
+### 📊 Quick Comparison
+
+| Setting   | When it Runs                | Use Case                       |
+| --------- | --------------------------- | ------------------------------ |
+| `trigger` | On branch commit/push       | CI builds on main/dev branches |
+| `pr`      | On pull request open/update | Validate PRs before merging    |
+| `batch`   | Runs only latest commit     | Save time & resources          |
+
+---
+
+
 # 🚀 Azure DevOps YAML Triggers – Cheat Sheet
 
 ---
