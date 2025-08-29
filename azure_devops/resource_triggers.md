@@ -1,5 +1,4 @@
-# 📘 Azure DevOps Pipeline Resource Triggers — Detailed Notes
-
+# 📘 Resource Triggers
 ---
 
 ## 1. 🔹 What is a Pipeline Resource?
