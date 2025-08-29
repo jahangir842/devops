@@ -145,3 +145,7 @@ steps:
 ✅ This setup is the **recommended way** in Azure DevOps when you want to chain pipelines.
 
 ---
+
+## Github Actions Equivalent:
+
+👉 In GitHub Actions, there is no direct equivalent of resources.pipelines — instead, we achieve the same effect with workflow_run triggers.
