@@ -31,4 +31,4 @@ Swimlanes are the **horizontal rows** on your board. They are used to separate d
 
 > "I manage swimlanes in the **Board Settings**.
 > I go to the **Gear icon** at the top right, select the **Swimlanes** tab, and add a new lane—typically an 'Expedite' lane for urgent production issues.
-> To delete one, I just use the trash icon in that same menu. I use these lanes to give visual priority to critical work items so the team knows what to pick up first."
+> To delete one, I use the trash icon in that same menu. I use these lanes to give visual priority to critical work items so the team knows what to pick up first."
